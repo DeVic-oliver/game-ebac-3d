@@ -22,9 +22,10 @@ namespace Devic.Scripts.Utils.StateMachine
         /// <param name="nextStateID">The state id that you want to switch</param>
         public void SwitchState(string nextStateID)
         {
-            if(_statesDictionary.ContainsKey(nextStateID)) 
+            var upperCaseString = nextStateID.ToUpper();
+            if(_statesDictionary.ContainsKey(upperCaseString)) 
             {
-                _currentState = _statesDictionary[nextStateID];
+                _currentState = _statesDictionary[upperCaseString];
                 _currentState.OnStateEnter(this);
             }
         }

@@ -35,6 +35,7 @@ namespace Assets.Scripts.Player.StateMachine
         private new void Start()
         {
             base.Start();
+            Debug.Log(statesID.IDLE.ToString());
         }
 
         private new void Update()
