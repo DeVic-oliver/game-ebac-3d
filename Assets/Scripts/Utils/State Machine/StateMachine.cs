@@ -39,7 +39,7 @@ namespace Devic.Scripts.Utils.StateMachine
         /// Initializes the FIRST state of the state machine.
         /// </summary>
         /// <returns>Must return the state that implements the IConcrete interface</returns>
-        public abstract IConcreteState SetInitialState();
+        protected abstract IConcreteState SetInitialState();
         /// <summary>
         /// Mapps the state with an id
         /// </summary>
