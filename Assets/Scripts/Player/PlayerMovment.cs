@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Devic.Scripts.Utils.JumpRaycaster;
+using Assets.Scripts.Core.Interfaces;
 
 namespace Assets.Scripts.Player
 {
-    public class PlayerMovment : MonoBehaviour
+    public class PlayerMovment : MonoBehaviour, IMoveable
     {
         private CharacterController _controller;
         
@@ -14,10 +15,11 @@ namespace Assets.Scripts.Player
 
         private float _playerMoveSpeed = 5f;
         
-        private Vector3 movementVector;
         private Vector3 _jumpVelocity;
 
         private Collider _playerCollider;
+
+        
 
         // Use this for initialization
         void Start()
@@ -29,32 +31,52 @@ namespace Assets.Scripts.Player
         // Update is called once per frame
         void Update()
         {
-            _isPlayerGrounded = JumpRaycaster.CheckIfIsGrounded(_playerCollider);
+            Move(true);
+        }
+        public void Move(bool isAlive)
+        {
+            if (isAlive)
+            {
+                _isPlayerGrounded = JumpRaycaster.CheckIfIsGrounded(_playerCollider);
+                MoveByCharacterController();
+            }
+        }
+        private void MoveByCharacterController() 
+        {
+            SetPlayerYVelocityToZero();
+            MovePlayerByAxis();
+            WatchForPlayerJump();
+        }
+        private void SetPlayerYVelocityToZero()
+        {
             if (_isPlayerGrounded && _jumpVelocity.y < 0)
             {
                 _jumpVelocity.y = 0f;
             }
-
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        }
+        private void MovePlayerByAxis()
+        {
+            var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             _controller.Move(move * Time.deltaTime * _playerMoveSpeed);
-
+            
             if (move != Vector3.zero)
             {
                 gameObject.transform.forward = move;
             }
-
-            // Changes the height position of the player..
+        }
+        private void WatchForPlayerJump()
+        {
             if (Input.GetButtonDown("Jump") && _isPlayerGrounded)
             {
                 _jumpVelocity.y -= Mathf.Sqrt(-200f * _fallForce * _gravity);
             }
 
+            ReturnPlayerToGround();
+        }
+        private void ReturnPlayerToGround()
+        {
             _jumpVelocity.y += _gravity * Time.deltaTime;
             _controller.Move(_jumpVelocity * Time.deltaTime);
-
         }
-
-     
-
     }
 }
