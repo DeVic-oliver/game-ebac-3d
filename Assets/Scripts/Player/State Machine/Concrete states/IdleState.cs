@@ -11,6 +11,7 @@ namespace Assets.Scripts.Player.StateMachine.ConcreteStates
         public void OnStateEnter(StateMachine stateMachine)
         {
             Debug.Log("Entered in IDLE state");
+            
         }
 
         public void OnUpdateState(StateMachine stateMachine)
