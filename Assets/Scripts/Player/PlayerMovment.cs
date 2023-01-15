@@ -68,7 +68,7 @@ namespace Assets.Scripts.Player
         {
             if (Input.GetButtonDown("Jump") && _isPlayerGrounded)
             {
-                _jumpVelocity.y -= Mathf.Sqrt(-200f * _fallForce * _gravity);
+                _jumpVelocity.y += Mathf.Sqrt(-8f * _fallForce * _gravity);
             }
 
             ReturnPlayerToGround();
