@@ -32,8 +32,8 @@ namespace Devic.Scripts.Utils.StateMachine
 
         protected void Start()
         {
-            _currentState = SetInitialState();
             _statesDictionary = RegisterConcreteStates();
+            _currentState = SetInitialState();
             _currentState.OnStateEnter(this);
         }
         /// <summary>
