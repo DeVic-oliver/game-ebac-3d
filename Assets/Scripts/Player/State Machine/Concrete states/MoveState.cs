@@ -1,41 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.StateMachine.ConcreteStates
 {
     using Devic.Scripts.Utils.StateMachine;
 
-    public class IdleState : IConcreteState
+    public class MoveState : IConcreteState
     {
         private Animator _animator;
         private PlayerMovment _playerMovement;
-        private GameObject _gameObject;
 
-        public IdleState() { }
-
-        public IdleState(Animator animator, PlayerMovment playerMovment) 
+        public MoveState() { }
+        
+        public MoveState(Animator animator, PlayerMovment playerMovment)
         {
             _animator = animator;
             _playerMovement = playerMovment;
         }
 
-
         public void OnStateEnter(StateMachine stateMachine)
         {
-            Debug.Log("Entered in IDLE state");
-            _animator.SetTrigger("idle");
+            Debug.Log("Entered in Move State");
+            _animator.SetBool("move", true);
         }
 
         public void OnUpdateState(StateMachine stateMachine)
         {
-            if(_playerMovement != null && _playerMovement.IsMoving )
+            if(_playerMovement != null && !_playerMovement.IsMoving)
             {
-                stateMachine.SwitchState("MOVE");
+                _animator.SetBool("move", false);
+                stateMachine.SwitchState("IDLE");
             }
             else
             {
-                Debug.Log("Running IDLE STATE");
+                Debug.Log("Running MOVE STATE");
             }
         }
     }
