@@ -7,12 +7,14 @@ namespace Assets.Scripts.Player
 {
     public class PlayerMovment : MonoBehaviour, IMoveable
     {
+        public bool IsMoving { get; private set; }
+        public bool HasJumped { get; private set; }
+        
         private CharacterController _controller;
         
         private bool _isPlayerGrounded;
         private float _gravity = -9.8f;
         private float _fallForce = 3f;
-
         private float _playerMoveSpeed = 5f;
         
         private Vector3 _jumpVelocity;
@@ -52,6 +54,7 @@ namespace Assets.Scripts.Player
             if (_isPlayerGrounded && _jumpVelocity.y < 0)
             {
                 _jumpVelocity.y = 0f;
+                HasJumped = false;
             }
         }
         private void MovePlayerByAxis()
@@ -59,15 +62,22 @@ namespace Assets.Scripts.Player
             var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             _controller.Move(move * Time.deltaTime * _playerMoveSpeed);
             
+
             if (move != Vector3.zero)
             {
+                IsMoving = true;
                 gameObject.transform.forward = move;
+            }
+            else
+            {
+                IsMoving = false;
             }
         }
         private void WatchForPlayerJump()
         {
             if (Input.GetButtonDown("Jump") && _isPlayerGrounded)
-            {
+            {   
+                HasJumped = true;
                 _jumpVelocity.y += Mathf.Sqrt(-8f * _fallForce * _gravity);
             }
 
