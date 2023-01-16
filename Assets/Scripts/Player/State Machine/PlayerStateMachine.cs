@@ -9,6 +9,9 @@ namespace Assets.Scripts.Player.StateMachine
     
     public class PlayerStateMachine : StateMachine
     {
+        [SerializeField] private Animator _animator;
+
+        #region STATES
         private enum statesID
         {
             IDLE,
@@ -17,7 +20,10 @@ namespace Assets.Scripts.Player.StateMachine
             DEAD
         }
 
-        private IConcreteState _idleState = new IdleState();
+        private IConcreteState _idleState;
+        private IConcreteState _moveState;
+        #endregion
+
 
         protected override IConcreteState SetInitialState()
         {
@@ -26,16 +32,24 @@ namespace Assets.Scripts.Player.StateMachine
 
         protected override Dictionary<string, IConcreteState> RegisterConcreteStates()
         {
+            InitObjects();
             var registeredStates = new Dictionary<string, IConcreteState>();
             registeredStates.Add(statesID.IDLE.ToString(), _idleState);
+            registeredStates.Add(statesID.MOVE.ToString(), _moveState);
 
             return registeredStates;
+        }
+        private void InitObjects()
+        {
+            var playerMovment = GetComponent<PlayerMovment>();
+            
+            _idleState = new IdleState(_animator, playerMovment);
+            _moveState = new MoveState(_animator, playerMovment);
         }
 
         private new void Start()
         {
             base.Start();
-            Debug.Log(statesID.IDLE.ToString());
         }
 
         private new void Update()
