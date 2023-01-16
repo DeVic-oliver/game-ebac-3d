@@ -15,8 +15,8 @@ namespace Assets.Scripts.Player
         private bool _isPlayerGrounded;
         private float _gravity = -9.8f;
         private float _fallForce = 3f;
-        private float _playerMoveSpeed = 5f;
-        
+        [SerializeField] private float _playerMoveSpeed = 10f;
+        [SerializeField] private float _jumpThrust = 8f;
         private Vector3 _jumpVelocity;
 
         private Collider _playerCollider;
@@ -78,7 +78,7 @@ namespace Assets.Scripts.Player
             if (Input.GetButtonDown("Jump") && _isPlayerGrounded)
             {   
                 HasJumped = true;
-                _jumpVelocity.y += Mathf.Sqrt(-8f * _fallForce * _gravity);
+                _jumpVelocity.y += Mathf.Sqrt(-_jumpThrust * _fallForce * _gravity);
             }
 
             ReturnPlayerToGround();
