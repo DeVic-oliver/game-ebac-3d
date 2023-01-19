@@ -33,7 +33,7 @@ namespace Assets.Scripts.Player.StateMachine.ConcreteStates
             }
             else
             {
-                Debug.Log("Running MOVE STATE");
+                //Debug.Log("Running MOVE STATE");
             }
         }
     }

@@ -35,7 +35,7 @@ namespace Assets.Scripts.Player.StateMachine.ConcreteStates
             }
             else
             {
-                Debug.Log("Running IDLE STATE");
+                //Debug.Log("Running IDLE STATE");
             }
         }
     }
