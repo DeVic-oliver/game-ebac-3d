@@ -14,11 +14,12 @@ namespace Assets.Scripts.Weapons.Guns
         [SerializeField] protected Transform _gunBarrel;
         [SerializeField] protected BulletBase _bulletType;
 
+        private bool _isReloading = false;
 
-        private void Start()
+        protected void Start()
         {
             _reloadTimeAux = _reloadTime;
-            Debug.Log($"Reload Time Aux Received {_reloadTimeAux}");
+            _currentMagazineAmount = _ammoMagazineCapacity;
         }
 
         public virtual void Shoot()
@@ -30,8 +31,9 @@ namespace Assets.Scripts.Weapons.Guns
                 bullet.transform.rotation = _gunBarrel.rotation;
                 _currentMagazineAmount--;
             }
-            else
+            else if(!_isReloading)
             {
+                _isReloading = true;
                 StartCoroutine(ReloadCoroutine());
             }
 
@@ -42,10 +44,15 @@ namespace Assets.Scripts.Weapons.Guns
             while(_reloadTimeAux >= 0)
             {
                 _reloadTimeAux -= Time.deltaTime;
-                yield return new WaitForSeconds(.1f);
+                yield return new WaitForEndOfFrame();
+                Debug.Log(_reloadTimeAux);
             }
+
+            _reloadTimeAux = _reloadTime;
             _currentMagazineAmount = _ammoMagazineCapacity;
+            _isReloading = false;
             Debug.Log($"Gun fully reloaded: {_currentMagazineAmount} ammo in magazine");
+            StopCoroutine(ReloadCoroutine());
         }
     }
 }
