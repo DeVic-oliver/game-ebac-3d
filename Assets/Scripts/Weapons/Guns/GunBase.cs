@@ -14,7 +14,7 @@ namespace Assets.Scripts.Weapons.Guns
         [SerializeField] protected Transform _gunBarrel;
         [SerializeField] protected BulletBase _bulletType;
 
-        private bool _isReloading = false;
+        protected bool _isReloading = false;
 
         protected void Start()
         {
@@ -24,35 +24,61 @@ namespace Assets.Scripts.Weapons.Guns
 
         public virtual void Shoot()
         {
-            if(_currentMagazineAmount > 0)
+            if(MagazineHaveAmmo())
             {
-                var bullet = Instantiate(_bulletType);
-                bullet.transform.position = _gunBarrel.position;
-                bullet.transform.rotation = _gunBarrel.rotation;
-                _currentMagazineAmount--;
+                CreateBullet();
+                DecreaseMagazineAmmo();
             }
             else if(!_isReloading)
             {
                 _isReloading = true;
                 StartCoroutine(ReloadCoroutine());
             }
-
         }
+        public bool MagazineHaveAmmo()
+        {
+            if(_currentMagazineAmount > 0)
+            {
+                return true;
+            }
 
+            return false;
+        }
+        protected virtual void CreateBullet()
+        {
+            var bullet = Instantiate(_bulletType);
+            bullet.transform.position = _gunBarrel.position;
+            bullet.transform.rotation = _gunBarrel.rotation;
+        }
+        protected void DecreaseMagazineAmmo()
+        {
+            _currentMagazineAmount--;
+        }
+        protected void DecreaseMagazineAmmo(int quantityToDecrease)
+        {
+            _currentMagazineAmount -= quantityToDecrease;
+        }
         protected IEnumerator ReloadCoroutine()
         {
             while(_reloadTimeAux >= 0)
             {
                 _reloadTimeAux -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
-                Debug.Log(_reloadTimeAux);
             }
 
-            _reloadTimeAux = _reloadTime;
-            _currentMagazineAmount = _ammoMagazineCapacity;
+            ResetReloadAux();
+            ReloadMagazine();
             _isReloading = false;
             Debug.Log($"Gun fully reloaded: {_currentMagazineAmount} ammo in magazine");
-            StopCoroutine(ReloadCoroutine());
+            yield break;
+        }
+        private void ResetReloadAux()
+        {
+            _reloadTimeAux = _reloadTime;
+        }
+        private void ReloadMagazine()
+        {
+            _currentMagazineAmount = _ammoMagazineCapacity;
         }
     }
 }
