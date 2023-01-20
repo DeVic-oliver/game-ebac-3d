@@ -132,3 +132,5 @@ MonoBehaviour:
   _reloadTime: 5
   _gunBarrel: {fileID: 1003074801184683795}
   _bulletType: {fileID: 2407732551379526602, guid: 896d30d4118415649b2384a5c548c391, type: 3}
+  _spreadAngle: 5
+  _bulletsQuantityOnShoot: 9
