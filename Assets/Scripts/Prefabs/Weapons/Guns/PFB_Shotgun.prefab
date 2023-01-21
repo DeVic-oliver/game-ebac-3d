@@ -128,9 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b321f37f85f3efe4dbaa51b52cfe4dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoMagazineCapacity: 3
+  _ammoMagazineCapacity: 10
   _reloadTime: 5
   _gunBarrel: {fileID: 1003074801184683795}
   _bulletType: {fileID: 2407732551379526602, guid: 896d30d4118415649b2384a5c548c391, type: 3}
-  _spreadAngle: 6
-  _bulletsQuantityOnShoot: 6
+  _spreadAngle: 5
