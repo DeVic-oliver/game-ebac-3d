@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 
 public class PlayerGun : MonoBehaviour
 {
+    [SerializeField] private Image _ammoAmount;
+
     [SerializeField] private GunBase _mainGun;
     [SerializeField] private GunBase _gun2;
     [SerializeField] private GunBase _gun3;
@@ -30,7 +32,17 @@ public class PlayerGun : MonoBehaviour
         _guns[2] = _gun3;
         _guns[3] = _gun4;
     }
-  
+
+    private void Update()
+    {
+        FillAmmoImageWithMagazineAmount();
+    }
+
+    private void FillAmmoImageWithMagazineAmount()
+    {
+        _ammoAmount.fillAmount = _currentGun.AmmoInMagazinePercentage;
+    }
+
     public void ChangeCurrentGun(InputAction.CallbackContext context)
     {
         if (context.performed)
