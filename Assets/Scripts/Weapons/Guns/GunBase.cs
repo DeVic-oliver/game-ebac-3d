@@ -5,22 +5,34 @@ namespace Assets.Scripts.Weapons.Guns
 {
     public abstract class GunBase : MonoBehaviour
     {
+        // A gun can have states to divide funcionalities. (FIRING, RELOADING, IDLE, EMPTY)
+        //Should create those states?
+        
         [SerializeField] protected int _ammoMagazineCapacity;
         protected int _currentMagazineAmount;
 
         [SerializeField] protected float _reloadTime;
-        private float _reloadTimeAux;
+
 
         [SerializeField] protected Transform _gunBarrel;
         [SerializeField] protected BulletBase _bulletType;
 
-        protected bool _isReloading = false;
+        public bool IsReloading { get; private set; }
+
+        public float AmmoInMagazinePercentage { get; private set; }
 
         protected void Start()
         {
-            _reloadTimeAux = _reloadTime;
+            IsReloading = false;
             _currentMagazineAmount = _ammoMagazineCapacity;
+            SetPercentageOfMagazineAmount();
         }
+
+        public int GetMagazineAmmoAmount()
+        {
+            return _currentMagazineAmount;
+        }
+
 
         public virtual void Shoot()
         {
@@ -29,9 +41,9 @@ namespace Assets.Scripts.Weapons.Guns
                 CreateBullet();
                 DecreaseMagazineAmmo();
             }
-            else if(!_isReloading)
+            else if(!IsReloading)
             {
-                _isReloading = true;
+                IsReloading = true;
                 StartCoroutine(ReloadCoroutine());
             }
         }
@@ -53,32 +65,38 @@ namespace Assets.Scripts.Weapons.Guns
         protected void DecreaseMagazineAmmo()
         {
             _currentMagazineAmount--;
+            SetPercentageOfMagazineAmount();
         }
         protected void DecreaseMagazineAmmo(int quantityToDecrease)
         {
             _currentMagazineAmount -= quantityToDecrease;
+            SetPercentageOfMagazineAmount();
+        }
+        private void SetPercentageOfMagazineAmount()
+        {
+            AmmoInMagazinePercentage = GetPercent(_currentMagazineAmount, _ammoMagazineCapacity);
         }
         protected IEnumerator ReloadCoroutine()
         {
-            while(_reloadTimeAux >= 0)
+            var count = 0f;
+            while(count <= _reloadTime)
             {
-                _reloadTimeAux -= Time.deltaTime;
+                count += Time.deltaTime;
+                AmmoInMagazinePercentage = GetPercent(count, _reloadTime);
                 yield return new WaitForEndOfFrame();
             }
-
-            ResetReloadAux();
             ReloadMagazine();
-            _isReloading = false;
+            IsReloading = false;
             Debug.Log($"Gun fully reloaded: {_currentMagazineAmount} ammo in magazine");
             yield break;
-        }
-        private void ResetReloadAux()
-        {
-            _reloadTimeAux = _reloadTime;
         }
         private void ReloadMagazine()
         {
             _currentMagazineAmount = _ammoMagazineCapacity;
+        }
+        private float GetPercent(float numberPercentTarget, float totalDivider)
+        {
+            return ((numberPercentTarget * 100f) / totalDivider) / 100f;
         }
     }
 }
