@@ -5,6 +5,6 @@ namespace Assets.Scripts.Core.Interfaces
 {
     public interface IDamageable
     {
-        public void TakeDamage(float damageValue);
+        public void TakeDamage(int damageValue);
     }
 }
