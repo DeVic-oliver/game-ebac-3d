@@ -7,14 +7,16 @@ namespace Assets.Scripts.Enemies
     public class EnemyBase : MonoBehaviour, IDamageable
     {
         public bool IsAlive { get; private set; }
+        public bool IsAttacking { get; private set; }
 
         [SerializeField] private int _healthPoints = 5;
 
         [SerializeField] private MeshRenderer _enemyMeshRenderer;
         [SerializeField] private Color _damageFeedbackColor;
+        [SerializeField] private float _flashSpeed = 1f;
 
         private Tween _currentColorTween;
-
+        
         public void TakeDamage(int damageValue)
         {
             if (damageValue >= _healthPoints)
@@ -32,7 +34,7 @@ namespace Assets.Scripts.Enemies
         {
             if (!_currentColorTween.IsActive())
             {
-                _currentColorTween = _enemyMeshRenderer.material.DOColor(_damageFeedbackColor, "_EmissionColor", 0.3f).SetLoops(2, LoopType.Yoyo);
+                _currentColorTween = _enemyMeshRenderer.material.DOColor(_damageFeedbackColor, "_EmissionColor", _flashSpeed).SetLoops(2, LoopType.Yoyo);
             }
         }
 
