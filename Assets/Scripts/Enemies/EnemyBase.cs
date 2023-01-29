@@ -22,6 +22,7 @@ namespace Assets.Scripts.Enemies
             if (damageValue >= _healthPoints)
             {
                 IsAlive = false;
+                Destroy(gameObject, 4f);
             }
             else
             {
