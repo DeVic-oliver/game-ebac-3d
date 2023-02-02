@@ -12,10 +12,10 @@ namespace Assets.Scripts.Enemies.Blob
     {
         [SerializeField] private ParticleSystem _deathVfx;
 
-        new void Start()
-        {
-            //base.Start();
-        }
+        //new void Start()
+        //{
+        //    //base.Start();
+        //}
 
         new void Update()
         {
