@@ -8,19 +8,13 @@ namespace Assets.Scripts.Enemies.Blob
 {
     public class RangedBlobBoss : RangedEnemy, IMoveable, IDamageable
     {
-        private float _stepToSlerp = 0.7f;
 
         public void Move(bool isAlive)
         {
-            if (isAlive)
+            if (isAlive && base.CheckIfEnemyIsNearby()) 
             {
                 LookToTargetSmoothly();
             }
-        }
-        private void LookToTargetSmoothly()
-        {
-            var lookRotation = Quaternion.LookRotation(_enemyGameObject.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, _stepToSlerp * Time.deltaTime);
         }
 
         public void TakeDamage(int damageValue)
@@ -28,38 +22,30 @@ namespace Assets.Scripts.Enemies.Blob
             if(damageValue >= _healthPoints)
             {
                 _healthPoints = 0;
-                base.PlayVFX(_deathVFX);
             }
             else
             {
-                _healthPoints -= damageValue;
                 PlayDamageFeedback();
+                _healthPoints -= damageValue;
             }
         }
-        protected override void PlayDamageFeedback()
+        private void PlayDamageFeedback()
         {
-            base.FlashShader();
+            _damageComponent.FlashShader();
         }
 
-        // Use this for initialization
-        void Start()
+        new void Start()
         {
-
+            base.Start();
         }
 
         // Update is called once per frame
         new void Update()
         {
             base.Update();
-            CheckIfEnemyIsNearby();
+            Move(IsAlive);
         }
-        private new void CheckIfEnemyIsNearby()
-        {
-            if (base.CheckIfEnemyIsNearby())
-            {
-                Move(IsAlive);
-            }
-        }
+ 
 
     }
 }

@@ -1,9 +1,11 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using Assets.Scripts.Core.Components.Damage;
 
 namespace Assets.Scripts.Core.Enemies
 {
+    [RequireComponent(typeof(DamageComponent))]
     public abstract class EnemyBase : MonoBehaviour
     {
         public bool IsAlive { get; private set; }
@@ -12,40 +14,17 @@ namespace Assets.Scripts.Core.Enemies
         [Header("Health")]
         [SerializeField] protected int _healthPoints = 5;
 
-        [Header("Damage settings")]
-        [SerializeField] private MeshRenderer _enemyMeshRenderer;
-        [SerializeField] private Color _damageFeedbackColor;
-        [SerializeField] private float _flashSpeed = 1f;
-        [SerializeField] protected ParticleSystem _damageVFX;
-        [SerializeField] protected ParticleSystem _deathVFX;
-
         [Header("Detection setup")]
         [SerializeField] protected float _rangeDetection = 15f;
         [SerializeField] protected GameObject _enemyGameObject;
+        [SerializeField] private float _rotationSlerpStep = 0.7f;
 
 
-        private Tween _currentColorTween;
+        [SerializeField] protected DamageComponent _damageComponent;
 
-        protected virtual void PlayDamageFeedback()
+        protected virtual void Start()
         {
-            PlayVFX(_damageVFX);
-            FlashShader();
-        }
-       
-        protected void FlashShader()
-        {
-            if (!_currentColorTween.IsActive())
-            {
-                _currentColorTween = _enemyMeshRenderer.material.DOColor(_damageFeedbackColor, "_EmissionColor", _flashSpeed).SetLoops(2, LoopType.Yoyo);
-            }
-        }
-
-        protected virtual void PlayVFX(ParticleSystem particleSys)
-        {
-            if (particleSys != null)
-            {
-                particleSys.Play();
-            }
+            _damageComponent = GetComponent<DamageComponent>();
         }
 
         protected virtual void Update()
@@ -69,6 +48,12 @@ namespace Assets.Scripts.Core.Enemies
                 return true;
             }
             return false;
+        }
+
+        protected void LookToTargetSmoothly()
+        {
+            var lookRotation = Quaternion.LookRotation(_enemyGameObject.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, _rotationSlerpStep * Time.deltaTime);
         }
     }
 }
