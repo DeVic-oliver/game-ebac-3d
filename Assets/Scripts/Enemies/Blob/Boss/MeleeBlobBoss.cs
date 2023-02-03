@@ -17,7 +17,7 @@ namespace Assets.Scripts.Enemies.Blob.Boss
 
         public void TakeDamage(int damageValue)
         {
-            throw new System.NotImplementedException();
+            DecreaseHealthByDamageWithFlashFeedback(damageValue);
         }
 
         // Use this for initialization
