@@ -19,15 +19,7 @@ namespace Assets.Scripts.Enemies.Blob
 
         public void TakeDamage(int damageValue)
         {
-            if(damageValue >= _healthPoints)
-            {
-                _healthPoints = 0;
-            }
-            else
-            {
-                PlayDamageFeedback();
-                _healthPoints -= damageValue;
-            }
+           DecreaseHealthByDamageWithFlashFeedback(damageValue);
         }
         private void PlayDamageFeedback()
         {

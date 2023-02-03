@@ -23,7 +23,7 @@ namespace Assets.Scripts.Enemies.Blob
 
         public void TakeDamage(int damageValue)
         {
-            throw new System.NotImplementedException();
+            DecreaseHealthByDamageWithFlashFeedback(damageValue);
         }
 
         public void Move(bool isAlive)

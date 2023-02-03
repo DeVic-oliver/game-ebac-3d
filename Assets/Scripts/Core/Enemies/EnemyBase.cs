@@ -55,5 +55,18 @@ namespace Assets.Scripts.Core.Enemies
             var lookRotation = Quaternion.LookRotation(_enemyGameObject.transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, _rotationSlerpStep * Time.deltaTime);
         }
+
+        protected void DecreaseHealthByDamageWithFlashFeedback(int damage)
+        {
+            if (damage >= _healthPoints)
+            {
+                _healthPoints = 0;
+            }
+            else
+            {
+                _damageComponent.FlashShader();
+                _healthPoints -= damage;
+            }
+        }
     }
 }
