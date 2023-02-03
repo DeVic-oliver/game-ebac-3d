@@ -10,13 +10,14 @@ namespace Assets.Scripts.Core.Enemies
         public bool IsAttacking { get; private set; }
 
         [Header("Health")]
-        [SerializeField] private int _healthPoints = 5;
+        [SerializeField] protected int _healthPoints = 5;
 
         [Header("Damage settings")]
         [SerializeField] private MeshRenderer _enemyMeshRenderer;
         [SerializeField] private Color _damageFeedbackColor;
         [SerializeField] private float _flashSpeed = 1f;
-        [SerializeField] private ParticleSystem _damageVFX;
+        [SerializeField] protected ParticleSystem _damageVFX;
+        [SerializeField] protected ParticleSystem _deathVFX;
 
         [Header("Detection setup")]
         [SerializeField] protected float _rangeDetection = 15f;
@@ -27,22 +28,23 @@ namespace Assets.Scripts.Core.Enemies
 
         protected virtual void PlayDamageFeedback()
         {
-            PlayParticleSystem();
+            PlayVFX(_damageVFX);
             FlashShader();
         }
-        private void PlayParticleSystem()
-        {
-            if (_damageVFX != null)
-            {
-                _damageVFX.Play();
-            }
-        }
-        private void FlashShader()
+       
+        protected void FlashShader()
         {
             if (!_currentColorTween.IsActive())
             {
                 _currentColorTween = _enemyMeshRenderer.material.DOColor(_damageFeedbackColor, "_EmissionColor", _flashSpeed).SetLoops(2, LoopType.Yoyo);
-                _damageVFX.Play();
+            }
+        }
+
+        protected virtual void PlayVFX(ParticleSystem particleSys)
+        {
+            if (particleSys != null)
+            {
+                particleSys.Play();
             }
         }
 
