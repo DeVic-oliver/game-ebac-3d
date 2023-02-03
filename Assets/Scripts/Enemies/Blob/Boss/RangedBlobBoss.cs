@@ -2,14 +2,25 @@
 using UnityEngine;
 using Assets.Scripts.Core.Enemies;
 using Assets.Scripts.Core.Interfaces;
+using DG.Tweening;
 
 namespace Assets.Scripts.Enemies.Blob
 {
     public class RangedBlobBoss : RangedEnemy, IMoveable, IDamageable
     {
+        private float _stepToSlerp = 0.7f;
+
         public void Move(bool isAlive)
         {
-            throw new System.NotImplementedException();
+            if (isAlive)
+            {
+                LookToTargetSmoothly();
+            }
+        }
+        private void LookToTargetSmoothly()
+        {
+            var lookRotation = Quaternion.LookRotation(_enemyGameObject.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, _stepToSlerp * Time.deltaTime);
         }
 
         public void TakeDamage(int damageValue)
@@ -27,6 +38,14 @@ namespace Assets.Scripts.Enemies.Blob
         new void Update()
         {
             base.Update();
+            CheckIfEnemyIsNearby();
+        }
+        private new void CheckIfEnemyIsNearby()
+        {
+            if (base.CheckIfEnemyIsNearby())
+            {
+                Move(IsAlive);
+            }
         }
 
     }

@@ -18,6 +18,11 @@ namespace Assets.Scripts.Core.Enemies
         [SerializeField] private float _flashSpeed = 1f;
         [SerializeField] private ParticleSystem _damageVFX;
 
+        [Header("Detection setup")]
+        [SerializeField] protected float _rangeDetection = 15f;
+        [SerializeField] protected GameObject _enemyGameObject;
+
+
         private Tween _currentColorTween;
 
         protected virtual void PlayDamageFeedback()
@@ -52,6 +57,15 @@ namespace Assets.Scripts.Core.Enemies
                 return true;
             }
 
+            return false;
+        }
+
+        protected virtual bool CheckIfEnemyIsNearby()
+        {
+            if(Vector3.Distance(_enemyGameObject.transform.position, gameObject.transform.position) < _rangeDetection)
+            {
+                return true;
+            }
             return false;
         }
     }
