@@ -1887,6 +1887,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8043139984699745673, guid: 6a85956ddea0a304da62a369edd2c2fa, type: 3}
   m_PrefabInstance: {fileID: 445953326}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &476294111 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2888148544728594344, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
+  m_PrefabInstance: {fileID: 5259896997106613673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &480208794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3380,6 +3385,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8711277840774425792, guid: de26322d17bf8df49a74450be4c0ebe5, type: 3}
   m_PrefabInstance: {fileID: 717458231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &722370443 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9050389941352154483, guid: dd4ce14518b471e46aa8283ab27b71b7, type: 3}
+  m_PrefabInstance: {fileID: 2586565812189001996}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &728736090
 PrefabInstance:
@@ -11378,8 +11388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ecd298456670b04c8c548d99f9dc7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMeshRenderer: {fileID: 0}
-  _damageFeedbackColor: {r: 0, g: 0, b: 0, a: 0}
+  _enemyMeshRenderer: {fileID: 476294111}
+  _damageFeedbackColor: {r: 0.3915094, g: 0.4892675, b: 1, a: 1}
   _flashSpeed: 1
   _vfxDict: []
 --- !u!1001 &2101847965
@@ -12228,6 +12238,22 @@ PrefabInstance:
       propertyPath: _enemyGameObject
       value: 
       objectReference: {fileID: 676864254}
+    - target: {fileID: 5068437928075148199, guid: dd4ce14518b471e46aa8283ab27b71b7, type: 3}
+      propertyPath: _enemyMeshRenderer
+      value: 
+      objectReference: {fileID: 722370443}
+    - target: {fileID: 5068437928075148199, guid: dd4ce14518b471e46aa8283ab27b71b7, type: 3}
+      propertyPath: _damageFeedbackColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068437928075148199, guid: dd4ce14518b471e46aa8283ab27b71b7, type: 3}
+      propertyPath: _damageFeedbackColor.b
+      value: 0.3993956
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068437928075148199, guid: dd4ce14518b471e46aa8283ab27b71b7, type: 3}
+      propertyPath: _damageFeedbackColor.r
+      value: 0.44705883
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd4ce14518b471e46aa8283ab27b71b7, type: 3}
 --- !u!1001 &2944156631476502560
