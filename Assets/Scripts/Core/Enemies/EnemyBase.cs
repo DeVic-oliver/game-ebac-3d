@@ -1,44 +1,30 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using Assets.Scripts.Core.Components.Damage;
 
 namespace Assets.Scripts.Core.Enemies
 {
+    [RequireComponent(typeof(DamageComponent))]
     public abstract class EnemyBase : MonoBehaviour
     {
         public bool IsAlive { get; private set; }
         public bool IsAttacking { get; private set; }
 
         [Header("Health")]
-        [SerializeField] private int _healthPoints = 5;
+        [SerializeField] protected int _healthPoints = 5;
 
-        [Header("Damage settings")]
-        [SerializeField] private MeshRenderer _enemyMeshRenderer;
-        [SerializeField] private Color _damageFeedbackColor;
-        [SerializeField] private float _flashSpeed = 1f;
-        [SerializeField] private ParticleSystem _damageVFX;
+        [Header("Detection setup")]
+        [SerializeField] protected float _rangeDetection = 15f;
+        [SerializeField] protected GameObject _enemyGameObject;
+        [SerializeField] private float _rotationSlerpStep = 0.7f;
 
-        private Tween _currentColorTween;
 
-        protected virtual void PlayDamageFeedback()
+        [SerializeField] protected DamageComponent _damageComponent;
+
+        protected virtual void Start()
         {
-            PlayParticleSystem();
-            FlashShader();
-        }
-        private void PlayParticleSystem()
-        {
-            if (_damageVFX != null)
-            {
-                _damageVFX.Play();
-            }
-        }
-        private void FlashShader()
-        {
-            if (!_currentColorTween.IsActive())
-            {
-                _currentColorTween = _enemyMeshRenderer.material.DOColor(_damageFeedbackColor, "_EmissionColor", _flashSpeed).SetLoops(2, LoopType.Yoyo);
-                _damageVFX.Play();
-            }
+            _damageComponent = GetComponent<DamageComponent>();
         }
 
         protected virtual void Update()
@@ -53,6 +39,21 @@ namespace Assets.Scripts.Core.Enemies
             }
 
             return false;
+        }
+
+        protected virtual bool CheckIfEnemyIsNearby()
+        {
+            if(Vector3.Distance(_enemyGameObject.transform.position, gameObject.transform.position) < _rangeDetection)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        protected void LookToTargetSmoothly()
+        {
+            var lookRotation = Quaternion.LookRotation(_enemyGameObject.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, _rotationSlerpStep * Time.deltaTime);
         }
     }
 }

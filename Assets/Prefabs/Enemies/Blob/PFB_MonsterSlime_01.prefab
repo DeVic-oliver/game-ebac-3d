@@ -4887,8 +4887,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5259896996575610045}
   - component: {fileID: 5259896996575610042}
-  - component: {fileID: 5259896996575610047}
-  - component: {fileID: 5259896996575610044}
   m_Layer: 0
   m_Name: PFB_MonsterSlime_01
   m_TagString: Untagged
@@ -4926,36 +4924,6 @@ CapsuleCollider:
   m_Height: 8.166531
   m_Direction: 1
   m_Center: {x: 0.14639282, y: 1.7914333, z: 0}
---- !u!114 &5259896996575610047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5259896996575610040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c1eb9b5cd6d834090d5ccaba587a05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthPoints: 5
-  _enemyMeshRenderer: {fileID: 2888148544728594344}
-  _damageFeedbackColor: {r: 0.8207547, g: 0.26713243, b: 0.26713243, a: 1}
-  _flashSpeed: 0.25
-  _deathVfx: {fileID: 5259896996043488332}
---- !u!114 &5259896996575610044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5259896996575610040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea397dd1a096bb4084969ffddca626a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 3436495990386369521}
 --- !u!1001 &5259896997205592122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5049,16 +5017,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86dc2d7519f0fa047a4a9adbc81a8da7, type: 3}
---- !u!23 &2888148544728594344 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6983442274928476050, guid: 86dc2d7519f0fa047a4a9adbc81a8da7, type: 3}
-  m_PrefabInstance: {fileID: 5259896997205592122}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &3436495990386369521 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7443898874300591051, guid: 86dc2d7519f0fa047a4a9adbc81a8da7, type: 3}
-  m_PrefabInstance: {fileID: 5259896997205592122}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4062228241161915591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8115776127002297597, guid: 86dc2d7519f0fa047a4a9adbc81a8da7, type: 3}
