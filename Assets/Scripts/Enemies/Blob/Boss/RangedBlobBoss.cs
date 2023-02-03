@@ -25,7 +25,20 @@ namespace Assets.Scripts.Enemies.Blob
 
         public void TakeDamage(int damageValue)
         {
-            throw new System.NotImplementedException();
+            if(damageValue >= _healthPoints)
+            {
+                _healthPoints = 0;
+                base.PlayVFX(_deathVFX);
+            }
+            else
+            {
+                _healthPoints -= damageValue;
+                PlayDamageFeedback();
+            }
+        }
+        protected override void PlayDamageFeedback()
+        {
+            base.FlashShader();
         }
 
         // Use this for initialization
