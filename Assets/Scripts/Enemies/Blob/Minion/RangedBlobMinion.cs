@@ -10,8 +10,6 @@ namespace Assets.Scripts.Enemies.Blob
 
     public class RangedBlobMinion : RangedEnemy, IDamageable, IMoveable
     {
-        [SerializeField] private ParticleSystem _deathVfx;
-
         //new void Start()
         //{
         //    //base.Start();
@@ -20,11 +18,6 @@ namespace Assets.Scripts.Enemies.Blob
         new void Update()
         {
             base.Update();
-        }
-
-        public void PlayDeathVFX()
-        {
-            _deathVfx.Play();
         }
 
         public void TakeDamage(int damageValue)
