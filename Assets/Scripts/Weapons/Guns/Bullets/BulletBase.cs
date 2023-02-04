@@ -28,6 +28,13 @@ namespace Assets.Scripts.Weapons.Guns
             {
                 damageable.TakeDamage(_damage);
             }
+            IPushable pushable = other.gameObject.GetComponent<IPushable>();
+            if (pushable != null)
+            {
+                Vector3 force = other.transform.localPosition - transform.localPosition;
+                force = -force.normalized;
+                pushable.Push(force);
+            }
         }
     }
 }
