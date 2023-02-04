@@ -18,18 +18,22 @@ namespace Assets.Scripts.Core.Enemies
         [SerializeField] protected float _rangeDetection = 15f;
         [SerializeField] protected GameObject _enemyGameObject;
         [SerializeField] private float _rotationSlerpStep = 0.7f;
-
-
+        [Space(10f)]
         [SerializeField] protected DamageComponent _damageComponent;
+
+        private Coroutine _deathCoroutine;
 
         protected virtual void Start()
         {
             _damageComponent = GetComponent<DamageComponent>();
+            _deathCoroutine = null;
+            GetComponent<Collider>().enabled = true;
         }
 
         protected virtual void Update()
         {
             IsAlive = CheckIfHasHealthPoints();
+            PlayDeathVFXIfNotAlive();
         }
         private bool CheckIfHasHealthPoints()
         {
@@ -37,8 +41,25 @@ namespace Assets.Scripts.Core.Enemies
             {
                 return true;
             }
-
             return false;
+        }
+        private void PlayDeathVFXIfNotAlive()
+        {
+            if (!IsAlive && _deathCoroutine == null)
+            {
+                _deathCoroutine = StartCoroutine(DeathCoroutine());
+                GetComponent<Collider>().enabled = false;
+            }
+        }
+        IEnumerator DeathCoroutine()
+        {
+            var deathVFX = _damageComponent.GetVFXFromDict("death");
+            deathVFX.Play();
+            while (deathVFX.isPlaying)
+            {
+                yield return null;
+            }
+            gameObject.SetActive(false);
         }
 
         protected virtual bool CheckIfEnemyIsNearby()
