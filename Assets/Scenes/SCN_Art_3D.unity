@@ -2485,7 +2485,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577161568}
-  m_LocalRotation: {x: 0.3120551, y: -1e-45, z: -0, w: 0.950064}
+  m_LocalRotation: {x: 0.3120551, y: 3e-45, z: -1e-45, w: 0.950064}
   m_LocalPosition: {x: 415.05, y: 15.11, z: 26.877384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7773,7 +7773,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500100153}
-  m_LocalRotation: {x: 0.3120551, y: -1e-45, z: 0, w: 0.950064}
+  m_LocalRotation: {x: 0.3120551, y: 3e-45, z: -1e-45, w: 0.950064}
   m_LocalPosition: {x: 415.05, y: 15.11, z: 26.877384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12229,7 +12229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 795275109006793759, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 402
+      value: 435.7
       objectReference: {fileID: 0}
     - target: {fileID: 795275109006793759, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12267,13 +12267,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 873913914432878765, guid: 3a596a1d253284744af21815b95270ec, type: 3}
+      propertyPath: _ammoAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 873913914432878765, guid: 3a596a1d253284744af21815b95270ec, type: 3}
+      propertyPath: _intervalBetweenShoots
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415134165373827338, guid: 3a596a1d253284744af21815b95270ec, type: 3}
+      propertyPath: _enemyGameObject
+      value: 
+      objectReference: {fileID: 676864254}
     - target: {fileID: 7044227983047252866, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_Name
-      value: PFB_MonsterSlime_02
+      value: PFB_RangedMonsterSlime_02
       objectReference: {fileID: 0}
     - target: {fileID: 7044227983047252866, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a596a1d253284744af21815b95270ec, type: 3}
@@ -12284,6 +12296,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1820459102704517132, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
+      propertyPath: _ammoAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820459102704517132, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
+      propertyPath: _intervalBetweenShoots
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3453314834175844664, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -12330,12 +12350,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3453314834175844668, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
       propertyPath: m_Name
-      value: PFB_MonsterSlime_03
+      value: PFB_RangedMonsterSlime_03
       objectReference: {fileID: 0}
-    - target: {fileID: 3453314834175844668, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 3453314834175844670, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
+      propertyPath: _enemyGameObject
+      value: 
+      objectReference: {fileID: 676864254}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
 --- !u!1001 &3791741116794296813
@@ -12519,20 +12539,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2092293603, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
-      propertyPath: _healthPoints
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 2092293603, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: _enemyGameObject
       value: 
       objectReference: {fileID: 676864254}
     - target: {fileID: 5259896996575610040, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: m_Name
-      value: PFB_MonsterSlime_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 5259896996575610040, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: PFB_MeleeMonsterSlime_01
       objectReference: {fileID: 0}
     - target: {fileID: 5259896996575610045, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: m_RootOrder
@@ -12548,7 +12560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5259896996575610045, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.64
+      value: 71.09
       objectReference: {fileID: 0}
     - target: {fileID: 5259896996575610045, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: m_LocalRotation.w
