@@ -16,7 +16,6 @@ namespace Assets.Scripts.Core.Enemies
             LookToTargetSmoothly();
         }
      
-
         public Vector3 GetMoveTowardsEnemyVector()
         {
             return Vector3.MoveTowards(transform.position, _enemyGameObject.transform.position, _moveSpeed * Time.deltaTime);

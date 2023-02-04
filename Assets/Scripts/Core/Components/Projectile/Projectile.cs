@@ -9,7 +9,7 @@ namespace Assets.Scripts.Core.Components.Projectile
     {
         [SerializeField] protected float _projectileSpeed;
         [SerializeField] protected int _damage;
-
+        
         protected virtual void Update()
         {
             LaunchProjectile();

@@ -10,31 +10,29 @@ namespace Assets.Scripts.Enemies.Blob
 
     public class RangedBlobMinion : RangedEnemy, IDamageable, IMoveable
     {
-        [SerializeField] private ParticleSystem _deathVfx;
-
-        //new void Start()
-        //{
-        //    //base.Start();
-        //}
+        new void Start()
+        {
+            base.Start();
+        }
 
         new void Update()
         {
             base.Update();
-        }
-
-        public void PlayDeathVFX()
-        {
-            _deathVfx.Play();
+            Move(IsAlive);
         }
 
         public void TakeDamage(int damageValue)
         {
-            throw new System.NotImplementedException();
+            DecreaseHealthByDamageWithFlashFeedback(damageValue);
+            PlayDamageComponentVFX("bloodSpill");
         }
 
         public void Move(bool isAlive)
         {
-            throw new System.NotImplementedException();
+            if (isAlive && base.CheckIfEnemyIsNearby())
+            {
+                LookToTargetSmoothly();
+            }
         }
     }
 }
