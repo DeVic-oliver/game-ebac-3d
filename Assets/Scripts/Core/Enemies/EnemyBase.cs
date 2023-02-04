@@ -89,5 +89,10 @@ namespace Assets.Scripts.Core.Enemies
                 _healthPoints -= damage;
             }
         }
+
+        protected void PlayDamageComponentVFX(string id)
+        {
+            _damageComponent.GetVFXFromDict(id).Play();
+        }
     }
 }
