@@ -37,7 +37,6 @@ namespace Assets.Scripts.Enemies.Blob
             base.Update();
             Move(IsAlive);
         }
- 
 
     }
 }
