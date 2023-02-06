@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
-using Assets.Scripts.Core.Enemies;
+﻿using Assets.Scripts.Core.Enemies;
 using Assets.Scripts.Core.Interfaces;
-using DG.Tweening;
 
 namespace Assets.Scripts.Enemies.Blob
 {
@@ -21,17 +18,12 @@ namespace Assets.Scripts.Enemies.Blob
         {
            DecreaseHealthByDamageWithFlashFeedback(damageValue);
         }
-        private void PlayDamageFeedback()
-        {
-            _damageComponent.FlashShader();
-        }
-
+        
         new void Start()
         {
             base.Start();
         }
 
-        // Update is called once per frame
         new void Update()
         {
             base.Update();

@@ -5525,6 +5525,17 @@ MonoBehaviour:
   _gun2: {fileID: 8979807518383395830}
   _gun3: {fileID: 0}
   _gun4: {fileID: 0}
+--- !u!114 &1062336462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5130076878529727616, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
+  m_PrefabInstance: {fileID: 6981690301812685611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ecd298456670b04c8c548d99f9dc7ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1095099566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12229,15 +12240,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 795275109006793759, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 435.7
+      value: 498.6
       objectReference: {fileID: 0}
     - target: {fileID: 795275109006793759, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.98
+      value: -6.91
       objectReference: {fileID: 0}
     - target: {fileID: 795275109006793759, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.64
+      value: 55.1
       objectReference: {fileID: 0}
     - target: {fileID: 795275109006793759, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12272,8 +12283,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 873913914432878765, guid: 3a596a1d253284744af21815b95270ec, type: 3}
+      propertyPath: _reloadTimeSeconds
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 873913914432878765, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: _intervalBetweenShoots
-      value: 0.22
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415134165373827338, guid: 3a596a1d253284744af21815b95270ec, type: 3}
+      propertyPath: _healthPoints
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415134165373827338, guid: 3a596a1d253284744af21815b95270ec, type: 3}
+      propertyPath: _rangeDetection
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5415134165373827338, guid: 3a596a1d253284744af21815b95270ec, type: 3}
       propertyPath: _enemyGameObject
@@ -12298,7 +12321,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1820459102704517132, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
       propertyPath: _ammoAmount
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1820459102704517132, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
       propertyPath: _intervalBetweenShoots
@@ -12353,9 +12376,17 @@ PrefabInstance:
       value: PFB_RangedMonsterSlime_03
       objectReference: {fileID: 0}
     - target: {fileID: 3453314834175844670, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
+      propertyPath: _healthPoints
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453314834175844670, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
       propertyPath: _enemyGameObject
       value: 
       objectReference: {fileID: 676864254}
+    - target: {fileID: 4739092028575156080, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
+      propertyPath: _flashSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4918ec664017a644b24c9a0ed2c67a0, type: 3}
 --- !u!1001 &3791741116794296813
@@ -12539,12 +12570,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2092293603, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
+      propertyPath: _healthPoints
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092293603, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
+      propertyPath: _rangeDetection
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092293603, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: _enemyGameObject
       value: 
       objectReference: {fileID: 676864254}
+    - target: {fileID: 2092293604, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
+      propertyPath: _flashSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5259896996575610040, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: m_Name
       value: PFB_MeleeMonsterSlime_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259896996575610040, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5259896996575610045, guid: 4951a58f04228c84696dcd42b46a0d44, type: 3}
       propertyPath: m_RootOrder
@@ -12752,7 +12799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1677318115931125867, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1677318115931125870, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: m_RootOrder
@@ -12760,7 +12807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1677318115931125870, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 406.43002
+      value: 500.8
       objectReference: {fileID: 0}
     - target: {fileID: 1677318115931125870, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12768,7 +12815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1677318115931125870, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 63.97
+      value: 99.5
       objectReference: {fileID: 0}
     - target: {fileID: 1677318115931125870, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12798,6 +12845,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4857542277717065284, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
+      propertyPath: _healthPoints
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857542277717065284, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
+      propertyPath: _rangeDetection
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857542277717065284, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
+      propertyPath: _damageComponent
+      value: 
+      objectReference: {fileID: 1062336462}
     - target: {fileID: 4857542277717065284, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: _enemyGameObject
       value: 
@@ -12845,6 +12904,14 @@ PrefabInstance:
     - target: {fileID: 5130076878529727616, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
       propertyPath: _vfxDict.Array.data[1].VFX
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038938440074077515, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
+      propertyPath: _ammoAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038938440074077515, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}
+      propertyPath: _intervalBetweenShoots
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b99127d8f1cf8b7408f8e9e4ec6cbac9, type: 3}

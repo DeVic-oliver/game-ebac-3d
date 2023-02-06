@@ -1,15 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Assets.Scripts.Enemies;
 using Assets.Scripts.Core.Enemies;
 using Assets.Scripts.Core.Interfaces;
 
 namespace Assets.Scripts.Enemies.Blob
 {
-
     public class RangedBlobMinion : RangedEnemy, IDamageable, IMoveable
     {
+
+        public void Move(bool isAlive)
+        {
+            if (isAlive && base.CheckIfEnemyIsNearby())
+            {
+                LookToTargetSmoothly();
+            }
+        }
+
+        public void TakeDamage(int damageValue)
+        {
+            DecreaseHealthByDamageWithFlashFeedback(damageValue);
+            PlayDamageComponentVFX("bloodSpill");
+        }
+
         new void Start()
         {
             base.Start();
@@ -19,20 +29,6 @@ namespace Assets.Scripts.Enemies.Blob
         {
             base.Update();
             Move(IsAlive);
-        }
-
-        public void TakeDamage(int damageValue)
-        {
-            DecreaseHealthByDamageWithFlashFeedback(damageValue);
-            PlayDamageComponentVFX("bloodSpill");
-        }
-
-        public void Move(bool isAlive)
-        {
-            if (isAlive && base.CheckIfEnemyIsNearby())
-            {
-                LookToTargetSmoothly();
-            }
         }
     }
 }

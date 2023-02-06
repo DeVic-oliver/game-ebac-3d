@@ -1,35 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Assets.Scripts.Enemies;
+﻿using UnityEngine;
 using Assets.Scripts.Core.Enemies;
 using Assets.Scripts.Core.Interfaces;
 using DG.Tweening;
 
 namespace Assets.Scripts.Enemies.Blob
 {
-
-    public class MeleeBlobMinion : MeleeEnemy, IDamageable, IMoveable, IPushable
+    public class MeleeBlobMinion : MeleeEnemy, IMoveable, IDamageable, IPushable
     {
-
-        new void Start()
-        {
-            base.Start();
-        }
-
-        new void Update()
-        {
-            base.Update();
-            Move(IsAlive);
-        }
-     
-
-        public void TakeDamage(int damageValue)
-        {
-            DecreaseHealthByDamageWithFlashFeedback(damageValue);
-            PlayDamageComponentVFX("bloodSpill");
-        }
-
         public void Move(bool isAlive)
         {
             if (isAlive && base.CheckIfEnemyIsNearby())
@@ -37,11 +14,28 @@ namespace Assets.Scripts.Enemies.Blob
                 MoveTowardsEnemy();
             }
         }
+        
+        public void TakeDamage(int damageValue)
+        {
+            DecreaseHealthByDamageWithFlashFeedback(damageValue);
+            PlayDamageComponentVFX("bloodSpill");
+        }
 
         public void Push(Vector3 force)
         {
             var forceVector = new Vector3(transform.localPosition.x - force.z, transform.position.y, transform.localPosition.z - force.z);
             transform.DOMove(forceVector, .1f);
+        }
+
+        new void Start()
+        {
+            base.Start();
+        }
+        
+        new void Update()
+        {
+            base.Update();
+            Move(IsAlive);
         }
     }
 }
