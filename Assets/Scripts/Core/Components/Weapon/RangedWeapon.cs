@@ -15,36 +15,44 @@ namespace Assets.Scripts.Core.Components.Weapon
         [SerializeField] protected int _ammoAmount;
         [SerializeField] protected float _reloadTimeSeconds = 2f;
 
+        private Coroutine _currentCoroutine;
 
         public void Shoot()
         {
-            StartCoroutine(ShootProjectile());
+            if (_currentCoroutine == null)
+            {
+                _currentCoroutine = StartCoroutine(ShootProjectile());
+            }
         }
-
         public void StopShoot()
         {
-            StopCoroutine(ShootProjectile());
+            if(_currentCoroutine != null)
+            {
+                StopCoroutine(_currentCoroutine);
+                _currentCoroutine = null;
+            }
         }
-
         IEnumerator ShootProjectile()
         {
-            int shootsMade = 0;
-            float reloadCount = 0;
-            while (shootsMade < _ammoAmount)
+            while (true)
             {
-                shootsMade++;
-                ShootProjectileFromWeaponPosition();
-                yield return new WaitForSeconds(_intervalBetweenShoots);
-            }
+                int shootsMade = 0;
+                float reloadCount = 0;
+                while (shootsMade < _ammoAmount)
+                {
+                    shootsMade++;
+                    ShootProjectileFromWeaponPosition();
+                    yield return new WaitForSeconds(_intervalBetweenShoots);
+                }
             
-            while(reloadCount < _reloadTimeSeconds)
-            {
-                reloadCount += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
+                while(reloadCount < _reloadTimeSeconds)
+                {
+                    reloadCount += Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+                shootsMade = 0;
             }
-            shootsMade = 0;
         }
-
         protected virtual void ShootProjectileFromWeaponPosition()
         {
             if (_projectile != null)

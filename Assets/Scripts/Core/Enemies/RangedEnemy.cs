@@ -24,7 +24,7 @@ namespace Assets.Scripts.Core.Enemies
 
         protected void ShootIfEnemyIsNearby()
         {
-            if (CheckIfEnemyIsNearby() && !_isShooting)
+            if (CheckIfEnemyIsNearby())
             {
                 _isShooting = true;
                 _weapon.Shoot();
