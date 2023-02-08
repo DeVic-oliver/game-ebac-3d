@@ -1,31 +1,31 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Core.Components
 {
-    public class Health : MonoBehaviour
+    public abstract class Health : MonoBehaviour
     {
-        public bool IsAlive { get; private set; }
+        public bool IsAlive { get; protected set; }
+        public float CurrentHealth { get; protected set; }
+        [SerializeField] protected float _health = 100f;
 
-        [SerializeField] private float _health = 100f;
-        [SerializeField] private Image _healthBar;
-
-        private float _currentHealth;
-
-        public void DecreaseHealth()
+        protected virtual void DecreaseHealth()
         {
-            _health = GetZeroOrPositiveHealthDecreasedByValue(1f);
+            CurrentHealth = GetZeroOrPositiveHealthDecreasedByValue(1f);
         }
 
-        public void DecreaseHealth(float value)
+        protected virtual void DecreaseHealth(float value)
         {
-            _health = GetZeroOrPositiveHealthDecreasedByValue(value);
+            CurrentHealth = GetZeroOrPositiveHealthDecreasedByValue(value);
         }
 
-        private float GetZeroOrPositiveHealthDecreasedByValue(float value)
+        public float GetTotalHealth()
         {
-            var health = _health - value;
+            return _health;
+        }
+
+        protected float GetZeroOrPositiveHealthDecreasedByValue(float value)
+        {
+            var health = CurrentHealth - value;
             if(health < 0)
             {
                 return 0;
@@ -33,29 +33,19 @@ namespace Assets.Scripts.Core.Components
             return health;
         }
 
-        private void Start()
+        protected virtual void Start()
         {
-            _currentHealth = _health;
+            CurrentHealth = _health;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
-            _healthBar.fillAmount = GetHealthPercentage();
             IsAlive = CheckIfIsAliveByHealthAmmout();
         }
-        private float GetHealthPercentage()
+        
+        protected bool CheckIfIsAliveByHealthAmmout()
         {
-            var percentage = (_currentHealth * 100f) / _health;
-            percentage = GetNormalizedPercentage(percentage);
-            return percentage;
-        }
-        private float GetNormalizedPercentage(float value) 
-        {
-            return value / 100f;
-        }
-        private bool CheckIfIsAliveByHealthAmmout()
-        {
-            if(_health > 0)
+            if (CurrentHealth > 0)
             {
                 return true;
             }
