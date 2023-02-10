@@ -16,7 +16,6 @@ namespace Assets.Scripts.Core.Components
         }
         private void UpdateHealthBar()
         {
-            Debug.Log(GetHealthPercentage());
             _fillableHealthBar.fillAmount = GetHealthPercentage();
         }
         private float GetHealthPercentage()
