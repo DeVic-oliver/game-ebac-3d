@@ -1,10 +1,9 @@
-﻿using Assets.Scripts.Core.Components;
-using Assets.Scripts.Core.Interfaces;
-using System.Collections;
-using UnityEngine;
-
-namespace Assets.Scripts.Player
+﻿namespace Assets.Scripts.Player
 {
+    using Assets.Scripts.Core.Components;
+    using Assets.Scripts.Core.Interfaces;
+    
+
     public class PlayerHealth : Health, IDamageable
     {
         public void TakeDamage(int damageValue)
