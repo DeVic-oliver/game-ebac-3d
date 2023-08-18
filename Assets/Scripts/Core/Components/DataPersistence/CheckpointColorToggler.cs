@@ -22,14 +22,13 @@
 
         public void TurnOffCheckpointColor()
         {
-            SetMaterialEmissionColorToGray();
             IsColorOn = false;
             SetMaterialEmissionColorToBlack();
         }
 
-        private void SetMaterialEmissionColorToGray()
+        private void SetMaterialEmissionColorToBlack()
         {
-            _material.SetColor("_EmissionColor", Color.gray);
+            _material.SetColor("_EmissionColor", Color.black);
         }
 
         private void Awake()
