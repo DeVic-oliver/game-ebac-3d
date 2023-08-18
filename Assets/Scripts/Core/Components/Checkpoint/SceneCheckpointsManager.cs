@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Core.Components.DataPersistence
+﻿namespace Assets.Scripts.Core.Components.Checkpoint
 {
     using System.Collections.Generic;
     using UnityEngine;

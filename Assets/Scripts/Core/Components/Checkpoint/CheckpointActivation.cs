@@ -1,19 +1,19 @@
-﻿namespace Assets.Scripts.Core.Components.DataPersistence
+﻿namespace Assets.Scripts.Core.Components.Checkpoint
 {
     using UnityEngine;
 
-    [RequireComponent(typeof(Collider), typeof(CheckpointColorToggler))]
+    [RequireComponent(typeof(Collider), typeof(CheckpointEmissionColorToggler))]
     public class CheckpointActivation : MonoBehaviour
     {
         public int CheckpointNumber { get; private set; }
 
-        private CheckpointColorToggler _colorToggler;
+        private CheckpointEmissionColorToggler _colorToggler;
 
 
         private void Awake()
         {
             SetCheckpointNumberThenIncrementTheCheckpointsInScene();
-            _colorToggler = GetComponent<CheckpointColorToggler>();
+            _colorToggler = GetComponent<CheckpointEmissionColorToggler>();
         }
 
         private void SetCheckpointNumberThenIncrementTheCheckpointsInScene()
