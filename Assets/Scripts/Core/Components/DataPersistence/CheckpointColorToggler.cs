@@ -4,12 +4,14 @@
     
     public class CheckpointColorToggler : MonoBehaviour
     {
+        public bool IsColorOn { get; private set; }
+
         [SerializeField] private MeshRenderer _meshRenderer;
         private Material _material;
 
-
         public void TurnOnCheckpointColor()
         {
+            IsColorOn = true;
             SetMaterialEmissionColorToWhite();
         }
 
@@ -21,6 +23,8 @@
         public void TurnOffCheckpointColor()
         {
             SetMaterialEmissionColorToGray();
+            IsColorOn = false;
+            SetMaterialEmissionColorToBlack();
         }
 
         private void SetMaterialEmissionColorToGray()
