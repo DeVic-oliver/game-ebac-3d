@@ -8,6 +8,12 @@ namespace Assets.Scripts.Core.Components
         public float CurrentHealth { get; protected set; }
         [SerializeField] protected float _health = 100f;
 
+
+        public void RestoreHealth()
+        {
+            CurrentHealth = _health;
+        }
+
         protected virtual void DecreaseHealth()
         {
             CurrentHealth = GetZeroOrPositiveHealthDecreasedByValue(1f);
