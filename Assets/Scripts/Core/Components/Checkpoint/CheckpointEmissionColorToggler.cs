@@ -1,8 +1,8 @@
-﻿namespace Assets.Scripts.Core.Components.DataPersistence
+﻿namespace Assets.Scripts.Core.Components.Checkpoint
 {
     using UnityEngine;
     
-    public class CheckpointColorToggler : MonoBehaviour
+    public class CheckpointEmissionColorToggler : MonoBehaviour
     {
         public bool IsColorOn { get; private set; }
 
