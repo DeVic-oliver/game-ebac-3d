@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4453430681962228944}
   - component: {fileID: 8424342073771246957}
   - component: {fileID: 7142824018092926431}
+  - component: {fileID: 3328250654772307945}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -100,6 +101,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _playerHealth: {fileID: 8424342073771246957}
+  _healthAnimator: {fileID: 3328250654772307945}
+--- !u!114 &3328250654772307945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3846645579458078727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea1bf343ba9c89468227661fa46edc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 8147834271147292628}
 --- !u!1 &4557716369008400208
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,11 +908,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5531986718136724959, guid: 89e20167823a30d459856414377997d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2163397644968456589}
   m_SourcePrefab: {fileID: 100100000, guid: 89e20167823a30d459856414377997d1, type: 3}
 --- !u!4 &6145482807535216348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5156129202013452133, guid: 89e20167823a30d459856414377997d1, type: 3}
+  m_PrefabInstance: {fileID: 1353160428258038201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6774245762899934310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5531986718136724959, guid: 89e20167823a30d459856414377997d1, type: 3}
+  m_PrefabInstance: {fileID: 1353160428258038201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2163397644968456589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6774245762899934310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5000781c4fae3743885696978b30cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDeathKeyFrame:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.PlayerDeathRescueManager, Assembly-CSharp
+        m_MethodName: WhetherHasCheckpointRespawnPlayerOrReloadSceneIfNotHasCheckpoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!95 &8147834271147292628 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7193805671317595757, guid: 89e20167823a30d459856414377997d1, type: 3}
   m_PrefabInstance: {fileID: 1353160428258038201}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3625527980992973527

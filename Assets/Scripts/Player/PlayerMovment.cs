@@ -9,8 +9,8 @@ namespace Assets.Scripts.Player
     {
         public bool IsMoving { get; private set; }
         public bool HasJumped { get; private set; }
-        
-        private CharacterController _controller;
+
+        [SerializeField] private CharacterController _controller;
         
         private bool _isPlayerGrounded;
         private float _gravity = -9.8f;
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Player
         [SerializeField] private float _jumpThrust = 8f;
         private Vector3 _jumpVelocity;
 
-        private Collider _playerCollider;
+        [SerializeField] private Collider _playerCollider;
 
         
 
