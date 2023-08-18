@@ -48,6 +48,7 @@
         {
             AliveState = new(this);
             DeadState = new(this);
+            _currentState = AliveState;
         }
 
         void Start()
