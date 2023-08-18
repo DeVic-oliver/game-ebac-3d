@@ -15,7 +15,7 @@
         {
             if (other.gameObject.TryGetComponent<PlayerHealthDamageGateway>(out var healthGateway))
             {
-                int randomDamage = Random.Range(2, 6);
+                int randomDamage = Random.Range(16, 40);
                 healthGateway.SendDamageToHealthComponent(randomDamage);
             }
         }
