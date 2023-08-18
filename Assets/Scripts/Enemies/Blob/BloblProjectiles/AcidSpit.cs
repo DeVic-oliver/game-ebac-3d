@@ -20,12 +20,12 @@ namespace Assets.Scripts.Enemies.Blob.BloblProjectiles
             base.Update();
         }
 
-        new void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
-            PlayerHealth player = other.gameObject.GetComponent<PlayerHealth>(); 
-            if (player != null)
+            if (other.gameObject.TryGetComponent<PlayerHealthDamageGateway>(out var healthGateway))
             {
-                player.TakeDamage(Random.Range(2, 6));
+                int randomDamage = Random.Range(2, 6);
+                healthGateway.SendDamageToHealthComponent(randomDamage);
             }
         }
     }
