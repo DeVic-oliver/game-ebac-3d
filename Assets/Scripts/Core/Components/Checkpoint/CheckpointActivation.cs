@@ -30,7 +30,7 @@
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player"))
             {
                 _colorToggler.TurnOnCheckpointColor();
                 ChangeCurrentCheckpointActiveNumber();
