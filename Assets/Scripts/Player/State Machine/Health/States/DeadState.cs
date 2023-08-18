@@ -2,12 +2,13 @@
 {
     public class DeadState : HealthStateBase
     {
-        public DeadState(HealthStateMachine stateMachine) : base(stateMachine)
+        public DeadState(HealthStateMachine stateMachine, PlayerHealthAnimator healthAnimator) : base(stateMachine, healthAnimator)
         {
         }
 
         public override void OnEnter()
         {
+            _healthAnimator.SetIsAliveParamToFalse();
             _stateMachine.InvokeDeathEvents();
         }
 

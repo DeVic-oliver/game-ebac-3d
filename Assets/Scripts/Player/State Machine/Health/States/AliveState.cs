@@ -2,12 +2,13 @@
 {
     public class AliveState : HealthStateBase
     {
-        public AliveState(HealthStateMachine stateMachine) : base(stateMachine)
+        public AliveState(HealthStateMachine stateMachine, PlayerHealthAnimator healthAnimator) : base(stateMachine, healthAnimator)
         {
         }
 
         public override void OnEnter()
         {
+            _healthAnimator.SetIsAliveParamToTrue();
             _stateMachine.InvokeLiveEvents();
         }
 

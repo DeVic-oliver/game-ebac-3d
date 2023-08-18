@@ -14,6 +14,8 @@
         public DeadState DeadState;
 
         [SerializeField] private PlayerHealth _playerHealth;
+        [SerializeField] private PlayerHealthAnimator _healthAnimator;
+
         private HealthStateBase _currentState;
 
 
@@ -46,8 +48,8 @@
 
         private void InitializeStates()
         {
-            AliveState = new(this);
-            DeadState = new(this);
+            AliveState = new(this, _healthAnimator);
+            DeadState = new(this, _healthAnimator);
             _currentState = AliveState;
         }
 
