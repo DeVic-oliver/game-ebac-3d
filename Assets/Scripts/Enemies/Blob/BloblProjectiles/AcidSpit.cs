@@ -1,31 +1,22 @@
-﻿using Assets.Scripts.Core.Components.Projectile;
-using Assets.Scripts.Player;
-using System.Collections;
-using UnityEngine;
-
-namespace Assets.Scripts.Enemies.Blob.BloblProjectiles
+﻿namespace Assets.Scripts.Enemies.Blob.BloblProjectiles
 {
+    using Assets.Scripts.Core.Components.Projectile;
+    using Assets.Scripts.Player;
+    using UnityEngine;
+    
     public class AcidSpit : Projectile
     {
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-       new void Update()
+        protected override void Update()
         {
             base.Update();
         }
 
-        new void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
-            PlayerHealth player = other.gameObject.GetComponent<PlayerHealth>(); 
-            if (player != null)
+            if (other.gameObject.TryGetComponent<PlayerHealthDamageGateway>(out var healthGateway))
             {
-                player.TakeDamage(Random.Range(2, 6));
+                int randomDamage = Random.Range(16, 40);
+                healthGateway.SendDamageToHealthComponent(randomDamage);
             }
         }
     }

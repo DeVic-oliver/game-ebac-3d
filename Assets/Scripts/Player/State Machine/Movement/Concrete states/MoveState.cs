@@ -20,7 +20,6 @@ namespace Assets.Scripts.Player.StateMachine.ConcreteStates
 
         public void OnStateEnter(StateMachine stateMachine)
         {
-            Debug.Log("Entered in Move State");
             _animator.SetBool("move", true);
         }
 
