@@ -17,7 +17,7 @@
 
         private void SetMaterialEmissionColorToWhite()
         {
-            _material.SetColor("_EmissionColor", Color.white);
+            _material.SetColor("_EmissionColor", Color.white * 3);
         }
 
         public void TurnOffCheckpointColor()
@@ -28,7 +28,7 @@
 
         private void SetMaterialEmissionColorToBlack()
         {
-            _material.SetColor("_EmissionColor", Color.black);
+            _material.SetColor("_EmissionColor", Color.white * 0);
         }
 
         private void Awake()
