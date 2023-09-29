@@ -5,8 +5,8 @@ namespace Assets.Scripts.Core.Components
     public abstract class Health : MonoBehaviour
     {
         public bool IsAlive { get; protected set; }
-        public float CurrentHealth { get; protected set; }
-        [SerializeField] protected float _health = 100f;
+        public int CurrentHealth { get; protected set; }
+        [SerializeField] protected int _health = 100;
 
 
         public void RestoreHealth()
@@ -16,20 +16,20 @@ namespace Assets.Scripts.Core.Components
 
         protected virtual void DecreaseHealth()
         {
-            CurrentHealth = GetZeroOrPositiveHealthDecreasedByValue(1f);
+            CurrentHealth = GetZeroOrPositiveHealthDecreasedByValue(1);
         }
 
-        protected virtual void DecreaseHealth(float value)
+        protected virtual void DecreaseHealth(int value)
         {
             CurrentHealth = GetZeroOrPositiveHealthDecreasedByValue(value);
         }
 
-        public float GetTotalHealth()
+        public int GetTotalHealth()
         {
             return _health;
         }
 
-        protected float GetZeroOrPositiveHealthDecreasedByValue(float value)
+        protected int GetZeroOrPositiveHealthDecreasedByValue(int value)
         {
             var health = CurrentHealth - value;
             if(health < 0)
