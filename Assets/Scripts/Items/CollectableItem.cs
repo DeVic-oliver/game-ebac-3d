@@ -2,15 +2,14 @@
 {
     using Assets.Scripts.Core.ScriptableObjects;
     using UnityEngine;
-    
+
     public class CollectableItem : MonoBehaviour
     {
         public ItemData Data;
 
-
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if(other.TryGetComponent<Inventory>(out Inventory inventory))
+            if (collision.gameObject.TryGetComponent<Inventory>(out Inventory inventory))
             {
                 inventory.AddToInventory(Data);
                 Destroy(gameObject);

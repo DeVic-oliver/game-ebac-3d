@@ -28,7 +28,7 @@
         {
             if(other.CompareTag("Player"))
             {
-                Signifier.transform.DOScale(0.5f, 0.4f);
+                Signifier.transform.DOScale(0.8f, 0.4f);
             }
         }
 
