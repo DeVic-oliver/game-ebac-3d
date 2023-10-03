@@ -17,6 +17,11 @@
             Quantity = quantity;
         }
 
+        public void AddQuantity(int value)
+        {
+            Quantity += value;
+        }
+
         public void IncrementQuantity()
         {
             Quantity++;

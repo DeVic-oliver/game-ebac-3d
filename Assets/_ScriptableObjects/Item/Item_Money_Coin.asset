@@ -16,4 +16,4 @@ MonoBehaviour:
   Sprite: {fileID: 0}
   Name: Money
   Description: 
-  Value: 0
+  Value: 1

@@ -5,6 +5,7 @@
     using Assets.Scripts.Core.ScriptableObjects;
     using System.Collections.Generic;
     using UnityEngine;
+    using static UnityEditor.LightingExplorerTableColumn;
 
     public class Inventory : MonoBehaviour
     {
@@ -27,10 +28,29 @@
             }
             else
             {
-                Item newItem = new(data, 1);
-                _items.Add(type, newItem);
+                CreateItemToAdd(data, 1);
             }
             _inventoryUI.UpdateUICount(_items[type]);
+        }
+
+        public void AddToInventory(ItemData data, int quantity)
+        {
+            ItemTypes type = data.Type;
+            if (_items.ContainsKey(type))
+            {
+                _items[data.Type].AddQuantity(quantity);
+            }
+            else
+            {
+                CreateItemToAdd(data, quantity);
+            }
+            _inventoryUI.UpdateUICount(_items[type]);
+        }
+
+        private void CreateItemToAdd(ItemData data, int quantity = 1)
+        {
+            Item newItem = new(data, quantity);
+            _items.Add(newItem.GetItemType(), newItem);
         }
 
         public int UseItem(ItemTypes type)
