@@ -9,7 +9,7 @@
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.TryGetComponent<Inventory>(out Inventory inventory))
+            if (collision.gameObject.TryGetComponent(out Inventory inventory))
             {
                 inventory.AddToInventory(Data);
                 Destroy(gameObject);
