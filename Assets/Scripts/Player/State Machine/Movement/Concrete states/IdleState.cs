@@ -9,12 +9,12 @@ namespace Assets.Scripts.Player.StateMachine.ConcreteStates
     public class IdleState : IConcreteState
     {
         private Animator _animator;
-        private PlayerMovment _playerMovement;
+        private PlayerMovement _playerMovement;
         private GameObject _gameObject;
 
         public IdleState() { }
 
-        public IdleState(Animator animator, PlayerMovment playerMovment) 
+        public IdleState(Animator animator, PlayerMovement playerMovment) 
         {
             _animator = animator;
             _playerMovement = playerMovment;

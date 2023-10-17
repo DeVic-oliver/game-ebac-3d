@@ -41,7 +41,7 @@ namespace Assets.Scripts.Player.StateMachine
         }
         private void InitObjects()
         {
-            var playerMovment = GetComponent<PlayerMovment>();
+            var playerMovment = GetComponent<PlayerMovement>();
             
             _idleState = new IdleState(_animator, playerMovment);
             _moveState = new MoveState(_animator, playerMovment);
