@@ -5,7 +5,7 @@ using Assets.Scripts.Core.Interfaces;
 
 namespace Assets.Scripts.Player
 {
-    public class PlayerMovment : MonoBehaviour, IMoveable
+    public class PlayerMovement : MonoBehaviour, IMoveable
     {
         public bool IsMoving { get; private set; }
         public bool HasJumped { get; private set; }
@@ -16,16 +16,26 @@ namespace Assets.Scripts.Player
         private float _gravity = -9.8f;
         private float _fallForce = 3f;
         [SerializeField] private float _playerMoveSpeed = 10f;
+        private float _defaultMoveSpeed;
         [SerializeField] private float _jumpThrust = 8f;
         private Vector3 _jumpVelocity;
 
         [SerializeField] private Collider _playerCollider;
 
         
+        public void AddValueToMoveSpeed(float value)
+        {
+            _playerMoveSpeed += value;
+        }
 
-        // Use this for initialization
+        public void ResetMoveSpeed()
+        {
+            _playerMoveSpeed = _defaultMoveSpeed;
+        }
+
         void Start()
         {
+            _defaultMoveSpeed = _playerMoveSpeed;
             _controller = GetComponent<CharacterController>();
             _playerCollider = GetComponent<Collider>();
         }
