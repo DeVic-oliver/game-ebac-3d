@@ -8,11 +8,11 @@ namespace Assets.Scripts.Player.StateMachine.ConcreteStates
     public class MoveState : IConcreteState
     {
         private Animator _animator;
-        private PlayerMovment _playerMovement;
+        private PlayerMovement _playerMovement;
 
         public MoveState() { }
         
-        public MoveState(Animator animator, PlayerMovment playerMovment)
+        public MoveState(Animator animator, PlayerMovement playerMovment)
         {
             _animator = animator;
             _playerMovement = playerMovment;
