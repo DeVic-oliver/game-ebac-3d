@@ -12,6 +12,7 @@
         public Animator Animator;
         public ItemData Item;
         public Collider Collider;
+        public ParticleSystem Signifier;
 
         private int _quantityOfItemsToShowWhenOpened = 5;
 
@@ -44,9 +45,15 @@
         {
             if(other.CompareTag("Player") && Input.GetKeyDown(KeyCode.UpArrow) )
             {
+                SetHintScaleToZero();
+                
                 Animator.SetTrigger("open");
+
+                Signifier.Stop();
+
                 Inventory inventory = other.GetComponent<Inventory>();
                 inventory.AddToInventory(Item, TreasureValue);
+                
                 Collider.enabled = false;
             }
         }
