@@ -10,6 +10,7 @@
         public void SetIsAliveParamToFalse()
         {
             SetIsAliveParamTo(false);
+            _animator.SetTrigger("Death"); 
         }
 
         public void SetIsAliveParamToTrue()

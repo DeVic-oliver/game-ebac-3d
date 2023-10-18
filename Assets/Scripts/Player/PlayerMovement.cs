@@ -21,6 +21,7 @@ namespace Assets.Scripts.Player
         private Vector3 _jumpVelocity;
 
         [SerializeField] private Collider _playerCollider;
+        [SerializeField] private Animator _playerAnimator;
 
         
         public void AddValueToMoveSpeed(float value)
@@ -40,33 +41,38 @@ namespace Assets.Scripts.Player
             _playerCollider = GetComponent<Collider>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             Move(true);
         }
+
         public void Move(bool isAlive)
         {
             if (isAlive)
             {
                 _isPlayerGrounded = JumpRaycaster.CheckIfIsGrounded(_playerCollider);
+                _playerAnimator.SetBool("isOnGround", _isPlayerGrounded);
                 MoveByCharacterController();
             }
         }
+
         private void MoveByCharacterController() 
         {
             SetPlayerYVelocityToZero();
             MovePlayerByAxis();
             WatchForPlayerJump();
         }
+
         private void SetPlayerYVelocityToZero()
         {
             if (_isPlayerGrounded && _jumpVelocity.y < 0)
             {
                 _jumpVelocity.y = 0f;
                 HasJumped = false;
+                _playerAnimator.SetTrigger("Land");
             }
         }
+
         private void MovePlayerByAxis()
         {
             var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -77,22 +83,27 @@ namespace Assets.Scripts.Player
             {
                 IsMoving = true;
                 gameObject.transform.forward = move;
+                _playerAnimator.SetBool("Run", true);
             }
             else
             {
                 IsMoving = false;
+                _playerAnimator.SetBool("Run", false);
             }
         }
+
         private void WatchForPlayerJump()
         {
             if (Input.GetButtonDown("Jump") && _isPlayerGrounded)
             {   
                 HasJumped = true;
                 _jumpVelocity.y += Mathf.Sqrt(-_jumpThrust * _fallForce * _gravity);
+                _playerAnimator.SetTrigger("Jump");
             }
 
             ReturnPlayerToGround();
         }
+
         private void ReturnPlayerToGround()
         {
             _jumpVelocity.y += _gravity * Time.deltaTime;
