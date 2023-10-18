@@ -8,10 +8,11 @@
     {
         public TreasureChestItem ItemToDrop;
         public int TreasureValue;
-        public GameObject Signifier;
+        public GameObject OpenHint;
         public Animator Animator;
         public ItemData Item;
         public Collider Collider;
+        public ParticleSystem Signifier;
 
         private int _quantityOfItemsToShowWhenOpened = 5;
 
@@ -28,7 +29,7 @@
         {
             if(other.CompareTag("Player"))
             {
-                Signifier.transform.DOScale(0.8f, 0.4f);
+                OpenHint.transform.DOScale(0.8f, 0.4f);
             }
         }
 
@@ -36,7 +37,7 @@
         {
             if (other.CompareTag("Player"))
             {
-                SetSignifierScaleToZero();
+                SetHintScaleToZero();
             }
         }
 
@@ -44,17 +45,22 @@
         {
             if(other.CompareTag("Player") && Input.GetKeyDown(KeyCode.UpArrow) )
             {
-                SetSignifierScaleToZero();
+                SetHintScaleToZero();
+                
                 Animator.SetTrigger("open");
+
+                Signifier.Stop();
+
                 Inventory inventory = other.GetComponent<Inventory>();
                 inventory.AddToInventory(Item, TreasureValue);
+                
                 Collider.enabled = false;
             }
         }
 
-        private void SetSignifierScaleToZero()
+        private void SetHintScaleToZero()
         {
-            Signifier.transform.DOScale(0f, 0.4f);
+            OpenHint.transform.DOScale(0f, 0.4f);
         }
 
     }
