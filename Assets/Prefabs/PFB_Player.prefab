@@ -364,6 +364,7 @@ MonoBehaviour:
   _playerMoveSpeed: 10
   _jumpThrust: 8
   _playerCollider: {fileID: 3089753803056092229}
+  _playerAnimator: {fileID: 8147834271147292628}
 --- !u!143 &8827553245550116151
 CharacterController:
   m_ObjectHideFlags: 0
@@ -889,6 +890,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.665534
       objectReference: {fileID: 0}
+    - target: {fileID: 7193805671317595757, guid: 89e20167823a30d459856414377997d1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2e8172185c3ced946a4986177839d3f3, type: 2}
     - target: {fileID: 7292968458697945819, guid: 89e20167823a30d459856414377997d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 2.0622259e-11
@@ -1115,7 +1120,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3380413261534309272, guid: ff73b89d5fff98542931fc40e3423e2f, type: 3}
+    - {fileID: 6638359391634806558, guid: ff73b89d5fff98542931fc40e3423e2f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1192,7 +1199,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Shotgun
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1775182104001689377, guid: 80f2c63194534e944b4febbf23beb358, type: 3}
+    - {fileID: 7668264526514899879, guid: 80f2c63194534e944b4febbf23beb358, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
