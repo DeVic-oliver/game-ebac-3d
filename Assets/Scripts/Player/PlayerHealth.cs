@@ -11,6 +11,11 @@
         public Inventory Inventory;
 
 
+        public void SetHealth(int health)
+        {
+            CurrentHealth = health;
+        }
+
         public void TakeDamage(int damageValue)
         {
             DecreaseHealth(damageValue);
