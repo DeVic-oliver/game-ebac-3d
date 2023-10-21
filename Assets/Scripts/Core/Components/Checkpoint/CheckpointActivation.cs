@@ -1,11 +1,13 @@
 ﻿namespace Assets.Scripts.Core.Components.Checkpoint
 {
     using UnityEngine;
+    using UnityEngine.Events;
 
     [RequireComponent(typeof(Collider), typeof(CheckpointEmissionColorToggler))]
     public class CheckpointActivation : MonoBehaviour
     {
         public int CheckpointNumber { get; private set; }
+        public UnityEvent OnCheckPointActivation;
 
         private CheckpointEmissionColorToggler _colorToggler;
 
@@ -34,6 +36,7 @@
             {
                 _colorToggler.TurnOnCheckpointColor();
                 ChangeCurrentCheckpointActiveNumber();
+                OnCheckPointActivation?.Invoke();
             }
         }
 
