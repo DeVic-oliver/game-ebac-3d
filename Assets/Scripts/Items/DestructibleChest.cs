@@ -17,7 +17,7 @@
             {
                 Health -= damageValue;
                 transform.DOShakeScale(.5f, 1);
-                Instantiate(ItemToDrop, transform.position + new Vector3(0, 4, 0), transform.rotation);
+                Instantiate(ItemToDrop, transform.position + new Vector3(0, 5, 0), transform.rotation);
             }
         }
 
