@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4c81ced5bf772488959b69386a0558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemToDrop: {fileID: 4285342295629558766, guid: 9f307152f39dc5548a369387c35da0bf, type: 3}
+  ItemToDrop: {fileID: 5398593385161070618, guid: c16e4396f5cba15419dde6a6fe49895c, type: 3}
   Collider: {fileID: 1896787953244859793}
   Health: 15
 --- !u!136 &1896787953244859793
