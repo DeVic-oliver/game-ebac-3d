@@ -6,14 +6,22 @@
 
     public class Item
     {
+        public ItemTypes Type { get; private set; }
+        public int Value { get; private set; }  
         public int Quantity { get; private set; }
-
-        private ItemData _data;
 
 
         public Item(ItemData data, int quantity)
         {
-            _data = data;
+            Type = data.Type;
+            Value = data.Value;
+            Quantity = quantity;
+        }
+
+        public Item(ItemTypes type, int quantity, int value)
+        {
+            Type = type;
+            Value = value;
             Quantity = quantity;
         }
 
@@ -31,16 +39,6 @@
         {
             if(Quantity > 0)
                 Quantity--;
-        }
-
-        public int GetItemValue()
-        {
-            return _data.Value;
-        }
-
-        public ItemTypes GetItemType()
-        {
-            return _data.Type;
         }
     }
 }
