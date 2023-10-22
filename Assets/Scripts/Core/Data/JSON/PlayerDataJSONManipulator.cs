@@ -1,7 +1,9 @@
 ﻿namespace Assets.Scripts.Core.Data.JSON
 {
     using Assets.Scripts.Core.Data.JSON.DataStructures;
+    using Assets.Scripts.Items;
     using Assets.Scripts.Player;
+    using System.Collections.Generic;
     using System.IO;
     using UnityEngine;
     using UnityEngine.SceneManagement;
@@ -9,6 +11,7 @@
     public class PlayerDataJSONManipulator : MonoBehaviour
     {
         public PlayerHealth Health;
+        public Inventory Inventory;
         public Transform PlayerTransform;
 
         private static readonly string _fileName = "player_data";
@@ -16,18 +19,24 @@
 
         public void SaveDataIntoJSON()
         {
-            PlayerData data = new PlayerData();
-            data.CurrentPosition = PlayerTransform.position;
-            data.CurrentHealth = Health.CurrentHealth;
-            data.LastSceneIDSaved = SceneManager.GetActiveScene().buildIndex;
+            List<ItemsCollected> currentItemsData = new();
+            foreach (Item item in Inventory.GetItemsFromInventory())
+            {
+                ItemsCollected itemCollected = new ItemsCollected();
+                itemCollected.Type = item.Type;
+                itemCollected.Quantity = item.Quantity;
+                itemCollected.Value = item.Value;
+                currentItemsData.Add(itemCollected);
+            }
 
+            PlayerData data = new(Health.CurrentHealth, PlayerTransform.position, SceneManager.GetActiveScene().buildIndex, currentItemsData);
             string json = JsonUtility.ToJson(data);
             string path = GetPath();
 
             File.WriteAllText(path, json);
         }
 
-        private void Awake()
+        private void Start()
         {
             if (JSONFileExists())
                 SetPlayerData();
@@ -38,6 +47,10 @@
             PlayerData data = LoadDataFromJSON();
             Health.SetHealth(data.CurrentHealth);
             PlayerTransform.position = data.CurrentPosition;
+            foreach (ItemsCollected item in data.CurrentItemsCollected)
+            {
+                Inventory.AddToInventory(item.Type, item.Quantity, item.Value);
+            }
         }
 
         private static PlayerData LoadDataFromJSON()
