@@ -30,7 +30,7 @@
         {
             CheckpointActivation currentActiveCheckpoint = _checkpointsDict[CurrentCheckpointNumberActive];
             Transform checkpointTransform = currentActiveCheckpoint.transform;
-            playerTransform.position = checkpointTransform.position;
+            playerTransform.position = checkpointTransform.position + new Vector3(0, 4, 0);
         }
 
         private void OnDestroy()
