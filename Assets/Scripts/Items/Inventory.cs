@@ -72,5 +72,10 @@
                 _items.Remove(type);
         }
 
+        private void Awake()
+        {
+            _items = new();
+        }
+
     }
 }
