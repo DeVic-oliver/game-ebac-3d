@@ -5,7 +5,7 @@
     using Assets.Scripts.Core.ScriptableObjects;
     using System.Collections.Generic;
     using UnityEngine;
-    using static UnityEditor.LightingExplorerTableColumn;
+
 
     public class Inventory : MonoBehaviour
     {
@@ -14,9 +14,9 @@
         private Dictionary<ItemTypes, Item> _items;
 
 
-        private void Awake()
+        public Dictionary<ItemTypes, Item>.ValueCollection GetItemsFromInventory()
         {
-            _items = new();
+            return _items.Values;
         }
 
         public void AddToInventory(ItemData data)
