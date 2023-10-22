@@ -39,7 +39,7 @@ namespace Assets.Scripts.Core.Components
             return health;
         }
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             CurrentHealth = _health;
         }
