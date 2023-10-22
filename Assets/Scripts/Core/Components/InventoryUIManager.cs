@@ -13,7 +13,7 @@
 
         public void UpdateUICount(Item item)
         {
-            if(ItemTypes.HeatlhCoin == item.GetItemType())
+            if(ItemTypes.HeatlhCoin == item.Type)
             {
                 HealthItemTMP.text = item.Quantity.ToString();
                 return;

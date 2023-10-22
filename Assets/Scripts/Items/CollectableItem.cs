@@ -7,9 +7,9 @@
     {
         public ItemData Data;
 
-        private void OnCollisionEnter(Collision collision)
+        protected void TryToGetGameObjectInventoryThenAddDataToItAndAutoDestroy(GameObject obj)
         {
-            if (collision.gameObject.TryGetComponent(out Inventory inventory))
+            if(obj.TryGetComponent(out Inventory inventory))
             {
                 inventory.AddToInventory(Data);
                 Destroy(gameObject);
