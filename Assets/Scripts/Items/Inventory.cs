@@ -61,7 +61,7 @@
                 item.DecrementQuantity();
                 DeleteKeyIfItemQuantityReachesZero(type, item);
                 _inventoryUI.UpdateUICount(item);
-                return item.GetItemValue();
+                return item.Value;
             }
             return 0;
         }
