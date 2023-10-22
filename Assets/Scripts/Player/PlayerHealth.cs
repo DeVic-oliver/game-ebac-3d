@@ -20,10 +20,10 @@
         {
             DecreaseHealth(damageValue);
         }
-
-        new void Start()
+       
+        new void Awake()
         {
-            base.Start();
+            base.Awake();
         }
 
         new void Update()
