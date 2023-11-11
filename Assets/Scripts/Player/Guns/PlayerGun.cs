@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class PlayerGun : MonoBehaviour
 {
     [SerializeField] private Image _ammoAmount;
+    [SerializeField] private AudioSource _audioSource;
 
     [SerializeField] private GunBase _mainGun;
     [SerializeField] private GunBase _gun2;
@@ -66,6 +67,7 @@ public class PlayerGun : MonoBehaviour
         if(context.performed)
         {
             _currentGun.Shoot();
+            _audioSource.Play();
         }
     }
 }
